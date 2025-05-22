@@ -3,6 +3,7 @@ import os
 import hashlib
 import threading
 import json
+import random
 
 IP_ADDRESS = input("Your IP: ").strip()
 FILES_DIR = f"files/{IP_ADDRESS}"
@@ -126,6 +127,7 @@ def handle_server(sock):
 
                 for peer_addr in seeders:
                     print(f"\nTrying to download from {peer_addr}\n")
+                    peer_addr = random.choice(seeders)
                     download_file_from_peer(peer_addr, filename)
                     break 
             elif data.startswith("ERROR|"):
